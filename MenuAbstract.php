@@ -1,6 +1,6 @@
 <?php
 
-namespace Programster\CliMenu;
+namespace programster\climenu;
 
 /* 
  * The base of a menus functionality that all menus should share. E.g.

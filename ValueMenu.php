@@ -1,6 +1,6 @@
 <?php
 
-namespace Programster\CliMenu;
+namespace programster\climenu;
 
 /* 
  * An action menu is a CLI menu whereby each option has an action that is treggered when the user

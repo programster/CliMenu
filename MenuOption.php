@@ -1,6 +1,6 @@
 <?php
 
-namespace Programster\CliMenu;
+namespace programster\climenu;
 
 
 
