@@ -1,5 +1,5 @@
 {
-    "name": "Programster/CliMenu",
+    "name": "programster/cli-menu",
     "type": "library",
     "description": "Cli Menu code for writing CLI applications in PHP 5.3+",
     "keywords": ["core","library"],
@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Programster\\CliMenu\\": ""
+            "programster\\cli-menu\\": ""
         }
     }
 }
