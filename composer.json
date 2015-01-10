@@ -1,5 +1,5 @@
 {
-    "name": "programster/cli-menu",
+    "name": "programster/climenu",
     "type": "library",
     "description": "Cli Menu code for writing CLI applications in PHP 5.3+",
     "keywords": ["core","library"],
