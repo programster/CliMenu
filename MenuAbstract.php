@@ -19,6 +19,9 @@ class MenuAbstract
     }
     
     
+    /**
+     * Print the title of the menu in a pretty way to the terminal.
+     */
     protected function printMenuTitle()
     {
         $length = strlen($this->m_name);
@@ -53,11 +56,17 @@ class MenuAbstract
             /* @var $option MenuOption */
             print '[' . $index . '] ' . $option->getName() . PHP_EOL;
         }
-       
-        $chosenOption = intval(readline());
         
-       
-        if ($chosenOption < 0 || $chosenOption >= count($this->m_options))
+        $rawInput = readline();
+        $chosenOption = intval($rawInput);
+        
+        if 
+        (
+            $rawInput === "" || 
+            ($chosenOption == 0 && $rawInput !== 0) ||
+            $chosenOption < 0 || 
+            $chosenOption >= count($this->m_options)
+        )
         {
             print "Invalid choice. Please try again." . PHP_EOL;
             $this->run();
