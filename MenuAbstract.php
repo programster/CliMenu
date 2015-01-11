@@ -63,7 +63,7 @@ class MenuAbstract
         if 
         (
             $rawInput === "" || 
-            ($chosenOption == 0 && $rawInput !== 0) ||
+            ($chosenOption == 0 && $rawInput !== "0") ||
             $chosenOption < 0 || 
             $chosenOption >= count($this->m_options)
         )
