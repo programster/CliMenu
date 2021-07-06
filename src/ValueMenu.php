@@ -3,17 +3,24 @@
 namespace Programster\CliMenu;
 
 /*
- * An action menu is a CLI menu whereby each option has an action that is treggered when the user
- * chooses it, rather than returning a value.
+ * A value menu is just like an action menu, just that the callbacks always return a value, rather than running
+ * a callback.
  */
 
-class ValueMenu extends MenuAbstract
+class ValueMenu extends ActionMenu
 {
     protected $m_options;
 
 
     public function __construct($name, ValueOption ...$valueOptions)
     {
+        $this->m_name = $name;
+        
+        if (count($valueOptions) <= 0)
+        {
+            throw new \Exception("Value menu needs at least one option.");
+        }
+
         foreach ($valueOptions as $option)
         {
             $value = $option->getValue();

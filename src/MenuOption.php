@@ -6,15 +6,15 @@ namespace Programster\CliMenu;
 
 class MenuOption
 {
-    private $m_name;
+    private string $m_name;
     private $m_callback;
 
-    
+
     public function __construct(string $name, $callback)
     {
         if (!is_callable($callback))
         {
-            throw new Exception('Menu callback must be a callback. Duh!');
+            throw new \Exception('Menu callback must be a callback. Duh!');
         }
 
         $this->m_name = $name;
@@ -32,6 +32,7 @@ class MenuOption
     }
 
 
+    # Accessors
     public function getName() { return $this->m_name; }
 }
 

@@ -2,20 +2,90 @@
 
 namespace Programster\CliMenu;
 
-/* 
- * An action menu is a CLI menu whereby each option has an action that is treggered when the user
- * chooses it, rather than returning a value.
+/*
+ * The base of a menus functionality that all menus should share. E.g.
+ * the core properties of a menu (title, options)
+ * The ability to choose an option and activate it.
  */
 
-class ActionMenu extends MenuAbstract
-{    
+class ActionMenu
+{
+    protected $m_name;
+    protected $m_options;
+
+    public function __construct(string $name, \Programster\CliMenu\MenuOption ...$actions)
+    {
+        $this->m_name = $name;
+
+        if (count($actions) === 0)
+        {
+            throw new \Exception("You have not provided any actions to your action menu.");
+        }
+
+        $this->m_options = $actions;
+    }
+
+
     /**
-     * Add an option to the menu
-     * @param \Programster\CliMenu\MenuOption $menuOption - the option to add
+     * Print the title of the menu in a pretty way to the terminal.
      */
-    public function addOption(MenuOption $menuOption)
-    {        
-        $this->m_options[] = $menuOption;
+    protected function printMenuTitle()
+    {
+        $length = strlen($this->m_name);
+
+        $header = str_repeat("-", $length);
+        $corner = '*';
+        $side = '|';
+
+        $menuString =
+            $corner . $header . $corner . PHP_EOL .
+            $side . $this->m_name . $side . PHP_EOL .
+            $corner . $header . $corner . PHP_EOL;
+
+        print $menuString;
+    }
+
+
+    /**
+     * Activate the menu, triggering a printout of the menu, fetchin of choice from the user, and
+     * subsequent action to take place on the menu option (fetching a value or running a method).
+     * @param void
+     * @return mixed - null if the menu option does nothing
+     */
+    public function run()
+    {
+        $result = null;
+        $this->printMenuTitle();
+
+        foreach ($this->m_options as $index => $option)
+        {
+            /* @var $option MenuOption */
+            print '[' . $index . '] ' . $option->getName() . PHP_EOL;
+        }
+
+        $rawInput = readline();
+        $chosenOption = intval($rawInput);
+
+        if
+        (
+               $rawInput === ""
+            || ($chosenOption == 0 && $rawInput !== "0")
+            || $chosenOption < 0
+            || $chosenOption >= count($this->m_options)
+        )
+        {
+            print "Invalid choice. Please try again." . PHP_EOL;
+            $this->run();
+        }
+        else
+        {
+            $menuOption = $this->m_options[$chosenOption];
+
+            /* @var $menuOption $menuOptionAbstract */
+            $result = $menuOption->run();
+        }
+
+        return $result;
     }
 }
 

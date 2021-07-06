@@ -13,7 +13,12 @@ final class ValueOption
     private $m_value;
 
 
-    public function __construct(string $name, $value)
+    /**
+     * Creates a new option for a ValueMenu.
+     * @param string $name - the name to display as the option in the value menu.
+     * @param mixed $value - whatever value you wish for the value menu to return when the user picks this option
+     */
+    public function __construct(string $name, mixed $value)
     {
         $this->m_name = $name;
         $this->m_value = $value;
@@ -22,5 +27,5 @@ final class ValueOption
 
     # Accessors
     public function getName() : string { return $this->m_name; }
-    public function getValue() { return $this->m_value; }
+    public function getValue() : mixed { return $this->m_value; }
 }
