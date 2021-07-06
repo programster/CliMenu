@@ -9,13 +9,13 @@ namespace Programster\CliMenu;
 
 class ValueMenu extends ActionMenu
 {
-    protected $m_options;
+    protected array $m_options;
 
 
     public function __construct($name, ValueOption ...$valueOptions)
     {
         $this->m_name = $name;
-        
+
         if (count($valueOptions) <= 0)
         {
             throw new \Exception("Value menu needs at least one option.");

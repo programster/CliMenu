@@ -9,8 +9,8 @@ namespace Programster\CliMenu;
 
 final class ValueOption
 {
-    private $m_name;
-    private $m_value;
+    private string $m_name;
+    private mixed $m_value;
 
 
     /**

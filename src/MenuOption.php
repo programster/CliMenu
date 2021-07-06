@@ -10,7 +10,7 @@ class MenuOption
     private $m_callback;
 
 
-    public function __construct(string $name, $callback)
+    public function __construct(string $name, \Closure | callable $callback)
     {
         if (!is_callable($callback))
         {
