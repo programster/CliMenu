@@ -9,9 +9,6 @@ namespace Programster\CliMenu;
 
 class ValueMenu extends ActionMenu
 {
-    protected array $m_options;
-
-
     public function __construct($name, ValueOption ...$valueOptions)
     {
         $this->m_name = $name;
